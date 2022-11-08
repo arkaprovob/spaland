@@ -100,9 +100,10 @@ export default function Start({ countries }) {
 }
 
 export async function getServerSideProps() {
-  const response = await fetch('https://restcountries.com/v3.1/all');
+  const sample_env_var = process.env.URL_ADDR
+  //https://restcountries.com/v3.1/all
+  const response = await fetch(sample_env_var ? sample_env_var : 'https://jsonplaceholder.typicode.com/todos/1');
   const countries = await response.json();
-
   return {
     props: {
       countries: countries.map((country) => ({
